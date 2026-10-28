@@ -1,0 +1,70 @@
+{
+  "slug": "trend-remakes",
+  "goal": "grow-audience",
+  "title": "Remake what is already breaking out",
+  "idea": "Every day take one of the 10 videos that broke out in your niche this week and re-film it in your own voice in a minute.",
+  "whatsNew": "Topics aren't invented: you start from a measured breakout of the last 7 days, not from an idea in your head.",
+  "steps": [
+    "Radar finds 10 breakouts of the week",
+    "Script in your voice from the best one",
+    "You film a one-minute take",
+    "Edit in the style of top creators"
+  ],
+  "chain": [
+    "trend-radar",
+    "reel-script",
+    "you",
+    {
+      "create": "Reels editor"
+    }
+  ],
+  "needsFromYou": "1 minute of filming a day",
+  "evidence": [
+    {
+      "text": "Author's 103 reels: naming the product and saying “free” give ×1.9 to median views",
+      "source": "reel-script, references/sources.md P3, 2026-09-22",
+      "kind": "practitioner"
+    }
+  ],
+  "author": "Igor Kossolapov",
+  "costPerResult": 0,
+  "timePerResult": "~45 min",
+  "fitsWhen": "You can film yourself",
+  "notFor": "Faceless accounts",
+  "costBreakdown": [
+    {
+      "tool": "Teamly API: exact TikTok and Instagram numbers",
+      "unit": "~20 requests",
+      "credits": 0.4,
+      "optional": true
+    },
+    {
+      "tool": "Seedance: an AI take on days you don't film",
+      "unit": "1 clip, 15 s",
+      "credits": 2.0,
+      "optional": true
+    }
+  ],
+  "costNote": "Free with Claude Code's own tools; paid tools are optional",
+  "i18n": {
+    "ru": {
+      "title": "Ремейки того, что уже залетает",
+      "idea": "Каждый день берёшь один из 10 роликов, которые залетели в нише за неделю, и переснимаешь его своим голосом за минуту.",
+      "whatsNew": "Темы не придумываются: старт с измеренного взлёта за 7 дней, а не с идеи из головы.",
+      "steps": [
+        "Радар находит 10 взлётов за неделю",
+        "Сценарий твоим голосом по лучшему",
+        "Ты снимаешь дубль на минуту",
+        "Монтаж в стиле топовых авторов"
+      ],
+      "needsFromYou": "1 минута съёмки в день",
+      "timePerResult": "~45 мин",
+      "fitsWhen": "Можешь снимать себя на камеру",
+      "notFor": "Аккаунты без лица",
+      "costNote": "Бесплатно: только инструменты Claude Code; платные инструменты — по желанию",
+      "evidence": [
+        "Анализ 103 роликов автора: продукт по имени и «бесплатно» дают ×1.9 к медиане просмотров"
+      ]
+    }
+  }
+}

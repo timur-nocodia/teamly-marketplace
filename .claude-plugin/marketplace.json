@@ -1,0 +1,14 @@
+{
+  "name": "teamly",
+  "owner": {
+    "name": "Teamly"
+  },
+  "description": "Teamly v2 for Claude Code.",
+  "plugins": [
+    {
+      "name": "teamly",
+      "source": "./plugins/teamly",
+      "description": "Teamly v2: your agent team and paid tools inside Claude Code."
+    }
+  ]
+}

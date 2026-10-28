@@ -1,0 +1,50 @@
+{
+  "slug": "deck-before-outreach",
+  "goal": "raise-round",
+  "title": "Cold read before outreach",
+  "idea": "Before writing to a single investor, the deck goes through a two-minute cold read until the verdict is CALL. Only the 3–5 spots that change the verdict get fixed.",
+  "whatsNew": "Investors spend minutes on a deck; a bad first send can't be undone. Fix the deck first, then spend contacts.",
+  "steps": [
+    "Cold read: stream of impressions, verdict, reason",
+    "3–5 edits that change the verdict",
+    "Fact-check of numbers and the call's first questions"
+  ],
+  "chain": [
+    "pitch-critic"
+  ],
+  "needsFromYou": "A deck or pitch text",
+  "evidence": [
+    {
+      "text": "Investors read a deck in minutes, not hours (DocSend)",
+      "source": "pitch-critic, references/sources.md",
+      "kind": "craft"
+    }
+  ],
+  "author": "Igor Kossolapov",
+  "costPerResult": 0,
+  "timePerResult": "~5 min",
+  "fitsWhen": "Before any investor outreach",
+  "notFor": "",
+  "costBreakdown": [],
+  "costNote": "Free",
+  "i18n": {
+    "ru": {
+      "title": "Сначала холодное чтение дека",
+      "idea": "Прежде чем писать хоть одному инвестору, дек прогоняется через холодное чтение за 2 минуты, пока вердикт не станет CALL. Правятся только те 3–5 мест, которые меняют вердикт.",
+      "whatsNew": "Инвесторы тратят на дек минуты; ошибка первой отправки не исправляется. Сначала доводим дек, потом тратим контакты.",
+      "steps": [
+        "Холодное чтение: поток впечатлений, вердикт, причина",
+        "3–5 правок, которые меняют вердикт",
+        "Факт-чек цифр и первые вопросы звонка"
+      ],
+      "needsFromYou": "Дек или текст питча",
+      "timePerResult": "~5 мин",
+      "fitsWhen": "Перед любой рассылкой инвесторам",
+      "notFor": "",
+      "costNote": "Бесплатно: только инструменты Claude Code",
+      "evidence": [
+        "Инвесторы читают дек минуты, а не часы (DocSend)"
+      ]
+    }
+  }
+}
