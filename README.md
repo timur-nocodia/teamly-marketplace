@@ -1,6 +1,6 @@
 # Teamly v2 marketplace (generated)
 
-Built from `feat/separate-marketplace` @ babd353 by `scripts/publish-stable.sh`. Do not edit here.
+Built from `main` @ 1c0f2cd by `scripts/publish-stable.sh`. Do not edit here.
 
 ```
 claude plugin marketplace add timur-nocodia/teamly-marketplace
