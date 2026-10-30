@@ -2,6 +2,10 @@
 
 Новая версия — новый раздел сверху. Строки `en:` и `ru:` верхнего раздела уходят в `latest.json` и в полосу «Update» в панели: одна короткая фраза, что человек получит. `minVersion:` пишется только тогда, когда версии ниже больше не работают с сервером Teamly: у них полоса станет красной.
 
+## 0.6.0 — 2026-10-30
+en: Updates find you: Teamly tells you when a new version is out within hours, and one press on Update installs it and restarts the panel, without restarting Claude.
+ru: Обновления находят вас сами: Teamly сообщает о новой версии в течение нескольких часов, а одно нажатие на Update ставит её и перезапускает панель, без перезапуска Claude.
+
 ## 0.5.6 — 2026-10-26
 en: The Teamly library is live: agents come from one shared library with everyone's stars, and an agent you publish reaches everyone. Agents can use Teamly's data tools with your key, asking you before every paid run.
 ru: Библиотека Teamly заработала: агенты приходят из общей библиотеки со звёздами от всех людей, а опубликованный агент виден всем. Агенты берут инструменты Teamly по твоему ключу и спрашивают тебя перед каждым платным запуском.

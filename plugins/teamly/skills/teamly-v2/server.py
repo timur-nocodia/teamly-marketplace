@@ -36,8 +36,8 @@ http://127.0.0.1:4319/connect.html#key=…&state=… and that page posts both to
 Prototype rule: agents are installed into .sandbox/skills, not ~/.claude/skills.
 Pass --skills-dir ~/.claude/skills when it is time to install for real.
 
-Updates: once a day the running server reads https://teamly.to/skill/latest.json (update.py; TEAMLY_UPDATE_URL or
-~/.teamly/config.json "updateUrl", "off" = never) and the panel shows a newer version.
+Updates: every few hours the running server reads latest.json from the marketplace repository (update.py;
+TEAMLY_UPDATE_URL or ~/.teamly/config.json "updateUrl", "off" = never) and the panel shows a newer version.
 
 Stdlib only. Binds 127.0.0.1. CLI: python3 server.py [--port 4319] [--skills-dir DIR] [--status | --check | --stop]
 """
@@ -63,7 +63,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urljoin, urlparse
 
-VERSION = "0.5.6"
+VERSION = "0.6.0"
 HERE = Path(__file__).resolve().parent
 PANEL_DIR = HERE / "panel"
 CATALOG_DIR = HERE / "agents"   # legacy v1 agents (mark, riley, james)
@@ -1199,13 +1199,13 @@ except ImportError:  # the forge folder is missing: the panel just won't show "R
     package_agent = None
 sys.path.insert(0, str(HERE))
 try:
-    import update as updater  # update.py: the update channel (latest.json on teamly.to)
+    import update as updater  # update.py: the update channel (latest.json in the marketplace repository)
 except Exception:  # the panel works without it, it just never says a new version is out
     updater = None
 
 UPDATE = {"status": None}
-UPDATE_CACHE = TEAMLY_DIR / "update-check.json"   # one check a day, kept across restarts
-DAY = 24 * 3600
+UPDATE_CACHE = TEAMLY_DIR / "update-check.json"   # one check every few hours, kept across restarts
+CHECK_EVERY = 6 * 3600   # a fix reaches people the same day
 
 
 def update_status():
@@ -1218,13 +1218,13 @@ def update_status():
 
 def check_updates_forever():
     while True:
-        wait = DAY
+        wait = CHECK_EVERY
         try:
             cache = read_json(UPDATE_CACHE) or {}
             age = time.time() - num(cache.get("checkedAt"), 0.0)
             st = cache.get("status") if cache.get("for") == VERSION and isinstance(cache.get("status"), dict) else None
             # "you must update" is asked again every hour: the site may have fixed a wrong minVersion
-            keep = (3600 if st and st.get("required") else DAY) if st else 0
+            keep = (3600 if st and st.get("required") else CHECK_EVERY) if st else 0
             if st and 0 <= age < keep:
                 UPDATE["status"], wait = st, keep - age
             else:
@@ -1233,7 +1233,7 @@ def check_updates_forever():
                 TEAMLY_DIR.mkdir(parents=True, exist_ok=True)
                 UPDATE_CACHE.write_text(json.dumps({"checkedAt": int(time.time()), "for": VERSION, "status": st},
                                                    ensure_ascii=False) + "\n", encoding="utf-8")
-                wait = 3600 if st.get("required") else DAY
+                wait = 3600 if st.get("required") else CHECK_EVERY
         except Exception:  # offline, no update file on the site yet, a cut answer: try again in an hour, never stop
             wait = 3600
         time.sleep(max(60, wait))

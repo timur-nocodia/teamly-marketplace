@@ -34,7 +34,9 @@ from urllib.parse import urlparse
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from install import WORK_PREFIX, Busy, Lock, files_of, keep_old, recover, swap, write_json  # noqa: E402  (same package)
-DEFAULT_URL = "https://teamly.to/skill/latest.json"
+# the channel is a file in the public repository of the marketplace: the publish script writes it next to the plugin
+DEFAULT_URL = "https://raw.githubusercontent.com/timur-nocodia/teamly-marketplace/main/latest.json"
+MARKETPLACE_PATH = "/timur-nocodia/teamly-marketplace/"
 VERSION_RE = re.compile(r"^\d{1,4}\.\d{1,4}\.\d{1,6}$")
 SHA_RE = re.compile(r"^[0-9a-f]{64}$")
 MAX_MANIFEST, MAX_ZIP = 64_000, 150_000_000
@@ -74,11 +76,14 @@ def manifest_url():
 
 
 def trusted(url):
-    """https on teamly.to (and its subdomains); http(s) on this computer for tests. Nothing else is ever downloaded."""
+    """https on teamly.to (and its subdomains) and the marketplace repository; http(s) on this computer for tests.
+    Nothing else is ever downloaded."""
     u = urlparse(url or "")
     host = (u.hostname or "").lower()
     if host in ("127.0.0.1", "localhost"):
         return u.scheme in ("http", "https")
+    if host == "raw.githubusercontent.com":
+        return u.scheme == "https" and u.path.startswith(MARKETPLACE_PATH)
     return u.scheme == "https" and (host == "teamly.to" or host.endswith(".teamly.to"))
 
 
@@ -138,15 +143,17 @@ def fetch_manifest(url=None):
     version, minimum = str(m.get("version", "")), str(m.get("minVersion") or "0.0.0")
     if not VERSION_RE.match(version) or not VERSION_RE.match(minimum):
         raise ValueError("the update file has no proper version")
-    if not trusted(str(m.get("url", ""))) or not str(m.get("url", "")).endswith(".zip"):
+    # a release of the plugin is installed by Claude (claude plugin update): its file has no archive, only the version
+    archive = str(m.get("url") or "")
+    if archive and (not trusted(archive) or not archive.endswith(".zip")):
         raise ValueError("the update file points outside teamly.to")
-    if not SHA_RE.match(str(m.get("sha256", ""))):
+    if archive and not SHA_RE.match(str(m.get("sha256", ""))):
         raise ValueError("the update file has no sha256")
     notes = m.get("notes")
     notes = {k: clean_text(v) for k, v in notes.items() if k in ("en", "ru") and isinstance(v, str)} if isinstance(notes, dict) \
         else ({"en": clean_text(notes)} if isinstance(notes, str) else {})
     size = m.get("size")
-    return {"version": version, "minVersion": minimum, "url": m["url"], "sha256": m["sha256"], "notes": notes,
+    return {"version": version, "minVersion": minimum, "url": archive or None, "sha256": m.get("sha256") if archive else None, "notes": notes,
             "size": size if isinstance(size, int) and 0 < size <= MAX_ZIP else None, "date": clean_text(m.get("date") or "", 20)}
 
 
@@ -211,6 +218,9 @@ def install_version(m, force):
     link = developer_link()
     if link:
         return out(False, error=f"{link} is a developer link: update that folder with git", **st)
+    if not m["url"]:
+        return out(False, error="this release has no archive: Teamly installed as a Claude plugin is updated with "
+                                "`claude plugin update teamly@teamly`", **st)
     run = teamly_dir() / "updates" / f"{m['version']}-{os.getpid()}"  # this run's own folder
     zp, unpacked = run / f"teamly-v2-{m['version']}.zip", run / "unpacked"
     try:

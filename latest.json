@@ -1,0 +1,9 @@
+{
+ "version": "0.6.0",
+ "minVersion": "0.0.0",
+ "notes": {
+  "en": "Updates find you: Teamly tells you when a new version is out within hours, and one press on Update installs it and restarts the panel, without restarting Claude.",
+  "ru": "Обновления находят вас сами: Teamly сообщает о новой версии в течение нескольких часов, а одно нажатие на Update ставит её и перезапускает панель, без перезапуска Claude."
+ },
+ "date": "2026-10-30"
+}
