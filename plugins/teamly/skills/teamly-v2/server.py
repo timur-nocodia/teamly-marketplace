@@ -603,7 +603,9 @@ def line_hash(line):
 
 
 RATINGS_SENT = TEAMLY_DIR / "ratings-sent.json"   # {"sent": [line hashes]}: ratings that already reached the library
-SYNC = {"at": 0.0, "busy": False}
+# error: why the last sending stopped ({"at", "code", "pending", "agent"}; code 0 = the library can't be reached), None
+# once everything went. The panel shows it: stars that never leave this computer are counted only here.
+SYNC = {"at": 0.0, "busy": False, "error": None}
 
 
 def sent_ratings():
@@ -633,6 +635,7 @@ def send_ratings(url, key):
             return
         sent = sent_ratings()
         before = len(sent)
+        todo = []
         for line in read_text_any(RATINGS).splitlines():
             h = line_hash(line)
             if not line.strip() or h in sent:
@@ -647,11 +650,17 @@ def send_ratings(url, key):
             if not slug or isinstance(stars, bool) or not isinstance(stars, int) or not 1 <= stars <= 5:
                 continue  # the person's own agent, not in the library: its stars stay on this computer
             task = hashlib.sha256(f"{r.get('team')}/{r.get('task')}".encode("utf-8")).hexdigest()[:16]
-            code = post_json(f"{url}/ratings", {"agent": slug, "stars": stars, "task": task}, key)
+            todo.append((h, {"agent": slug, "stars": stars, "task": task}))
+        error = None
+        for i, (h, body) in enumerate(todo):
+            code = post_json(f"{url}/ratings", body, key)
             if code in (200, 400, 404):  # taken, or the library will never take it: either way it's done
                 sent.add(h)
-            else:
-                break  # offline or the key isn't accepted: the next try sends the rest
+            else:  # offline or the key isn't accepted: the next try sends the rest
+                error = {"at": time.time(), "code": code, "pending": len(todo) - i, "agent": body["agent"]}
+                break
+        with REMOTE_LOCK:
+            SYNC["error"] = error
         if len(sent) != before:
             write_atomic(RATINGS_SENT, json.dumps({"sent": sorted(sent)}))
             with REMOTE_LOCK:
@@ -1581,6 +1590,7 @@ def state():
                 **key_status(key)},
         "wallet": wallet_for(key),
         "walletError": wallet_error_for(key),
+        "librarySync": library_sync_error(),
         "runs": runs_for(key),
         "skillsDir": str(SKILLS_DIR),
         "sandbox": SKILLS_DIR.resolve() != (Path.home() / ".claude" / "skills").resolve(),
@@ -1606,6 +1616,11 @@ def wallet_for(key):
 def wallet_error_for(key):
     with API_LOCK:
         return dict(API["walletError"]) if key and API["key"] == key and API["walletError"] else None
+
+
+def library_sync_error():
+    with REMOTE_LOCK:
+        return dict(SYNC["error"]) if SYNC["error"] else None
 
 
 def runs_for(key):

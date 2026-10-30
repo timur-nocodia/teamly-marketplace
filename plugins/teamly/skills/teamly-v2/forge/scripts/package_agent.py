@@ -299,6 +299,10 @@ def config_to_questions(text, upstream=None, names=(), hidden=None):
 
 
 def cmd_status(agent_dir, team):
+    if agent_dir.startswith("--") or not Path(agent_dir).is_dir():  # a wrong call must not read as "not ready yet"
+        print(json.dumps({"ok": False, "error": f"no agent folder at {agent_dir!r}: status <agent dir> [--team <slug>]"},
+                         ensure_ascii=False))
+        return 2
     print(json.dumps(readiness(agent_dir, team), ensure_ascii=False, indent=1))
     return 0
 

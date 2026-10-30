@@ -71,6 +71,17 @@ function stars(ctx, a, size = "text-[12px]") {
   </span>`;
 }
 
+// Ratings the library didn't take (server.py send_ratings): their stars are counted into what this screen shows, so
+// without this line nobody would learn they never left this computer.
+function syncNote(ctx) {
+  const s = ctx.S.librarySync;
+  if (!s || !(Number(s.pending) > 0)) return "";
+  const n = Number(s.pending);
+  const what = `${n} rating${n === 1 ? "" : "s"} you gave ${n === 1 ? "is" : "are"} still only on this computer`;
+  const why = Number(s.code) === 0 ? "the Teamly library can't be reached" : `the Teamly library answered ${ctx.esc(String(s.code))}`;
+  return `<p data-library-sync class="mt-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[12px] leading-snug text-foreground/80">${what}: ${why}. Your stars count in what you see here, not yet for anyone else. Teamly tries again every 2 minutes.</p>`;
+}
+
 function pool(ctx) {
   return ctx.A.AGENTS.filter((a) => !a.replacedBy);
 }
@@ -269,6 +280,7 @@ export function render(ctx) {
       <span data-count class="text-[11px] text-foreground/45">${countLine(ctx, l)}</span>
     </div>
     <p class="mt-1.5 text-[12px] text-muted-foreground">Agents built by people who already got the result. Each owns one job — tap one to see what it does.</p>
+    ${syncNote(ctx)}
     <button data-install-file class="mt-2 inline-flex items-center gap-1.5 text-[12px] font-medium text-[#4f5bd5] hover:underline">${ctx.icon("folder", "size-3.5")} Got an agent or a team from someone (a file or a link)? Install it</button>
     <label class="mt-3 flex h-10 items-center gap-2 rounded-lg border-2 border-foreground/12 bg-card px-3 focus-within:border-[#4f5bd5]">
       ${ctx.icon("search", "size-4 text-foreground/40")}
