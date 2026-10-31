@@ -63,7 +63,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urljoin, urlparse
 
-VERSION = "0.6.1"
+VERSION = "0.6.2"
 HERE = Path(__file__).resolve().parent
 PANEL_DIR = HERE / "panel"
 CATALOG_DIR = HERE / "agents"   # legacy v1 agents (mark, riley, james)

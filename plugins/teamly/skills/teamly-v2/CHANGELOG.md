@@ -2,6 +2,10 @@
 
 Новая версия — новый раздел сверху. Строки `en:` и `ru:` верхнего раздела уходят в `latest.json` и в полосу «Update» в панели: одна короткая фраза, что человек получит. `minVersion:` пишется только тогда, когда версии ниже больше не работают с сервером Teamly: у них полоса станет красной.
 
+## 0.6.2 — 2026-10-31
+en: Hiring now says up front when it will switch you to another floor's chat, and when the request just goes to the chat you are in.
+ru: Найм заранее говорит, когда переключит вас в чат другого этажа, а когда запрос просто уйдёт в тот чат, где вы сейчас.
+
 ## 0.6.1 — 2026-10-31
 en: Claude's auto mode no longer blocks Teamly's own work: starting agent chats and scheduled reports are described in a short CLAUDE.md in your team folder, and publishing an agent now waits for your typed yes.
 ru: Режим auto в Claude больше не блокирует работу самой Teamly: запуск чатов агентов и отчёты по расписанию описаны в коротком CLAUDE.md в папке команды, а публикация агента ждёт твоего напечатанного «да».

@@ -245,8 +245,13 @@ function hireSheet(ctx, a) {
       ${HIRE_STAGES.map(([t, d], i) => `<li class="flex gap-2.5"><span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#4f5bd5]/12 text-[10px] font-bold text-[#4f5bd5]">${i + 1}</span><span class="text-[12.5px] leading-snug"><b>${t}.</b> <span class="text-foreground/65">${d}</span></span></li>`).join("")}
     </ol>
     <div class="mt-3 rounded-lg bg-muted px-3 py-2 font-mono text-[11.5px]">Teamly: hire ${ctx.esc(a.slug)} → ${ctx.esc(pick)}${has(teams.find((x) => x.slug === pick) ?? {}) ? " (a second one)" : ""}</div>
-    <button data-hire-go class="${ctx.BTN} mt-3">${ctx.icon("copy", "size-3")} Copy &amp; open ${ctx.esc(sorted.find((t) => t.slug === pick).name)}'s chat</button>
-    <p class="mt-2 text-center text-[11px] text-foreground/45">Paste it in the chat. The floor shows each stage while it happens.</p>`;
+    ${(() => {
+      // each floor has its own coordinator chat: the hire runs there, so pressing may leave this chat
+      const t = teams.find((x) => x.slug === pick), name = ctx.esc(sorted.find((x) => x.slug === pick).name);
+      const here = t?.coordinator_session && t.coordinator_session === ctx.A.hostChat, away = t?.coordinator_session && !here;
+      return `<button data-hire-go class="${ctx.BTN} mt-3">${ctx.icon("copy", "size-3")} ${away ? `Copy &amp; switch to ${name}'s chat` : "Copy the request"}</button>
+    <p class="mt-2 text-center text-[11px] leading-snug text-foreground/45">${away ? `Each floor hires in its own chat, so this opens <b>${name}</b>'s chat. Paste the request there; its panel opens on that side. Come back from the sidebar.` : here ? "This floor's chat is the one on the left: paste the request there." : `Open ${name}'s chat in the sidebar and paste the request there.`} The floor shows each stage while it happens.</p>`;
+    })()}`;
   ctx.openSheet(draw(), function bind(sheet) {
     sheet.querySelectorAll("[data-floor]").forEach((b) => { b.onclick = () => { pick = b.dataset.floor; ctx.openSheet(draw(), bind); }; });
     sheet.querySelector("[data-hire-go]").onclick = async () => {
@@ -255,7 +260,7 @@ function hireSheet(ctx, a) {
       try { await navigator.clipboard.writeText(prompt); } catch { /* clipboard blocked: the prompt is on screen */ }
       if (t?.coordinator_session) {
         ctx.A.live.openChat(t.coordinator_session)
-          .then(() => { ctx.closeSheet(); ctx.toast(`Copied — paste it in ${(t.name)}'s chat`); })
+          .then((r) => { ctx.closeSheet(); ctx.toast(r?.here ? "Copied — paste it in the chat on the left" : `Copied — paste it in ${(t.name)}'s chat`); })
           .catch(() => ctx.toast("Copied — open the floor's chat in the sidebar and paste it"));
       } else { ctx.closeSheet(); ctx.toast("Copied — open the floor's chat in the sidebar and paste it"); }
     };
