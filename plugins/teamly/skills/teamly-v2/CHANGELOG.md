@@ -2,6 +2,10 @@
 
 Новая версия — новый раздел сверху. Строки `en:` и `ru:` верхнего раздела уходят в `latest.json` и в полосу «Update» в панели: одна короткая фраза, что человек получит. `minVersion:` пишется только тогда, когда версии ниже больше не работают с сервером Teamly: у них полоса станет красной.
 
+## 0.6.1 — 2026-10-31
+en: Claude's auto mode no longer blocks Teamly's own work: starting agent chats and scheduled reports are described in a short CLAUDE.md in your team folder, and publishing an agent now waits for your typed yes.
+ru: Режим auto в Claude больше не блокирует работу самой Teamly: запуск чатов агентов и отчёты по расписанию описаны в коротком CLAUDE.md в папке команды, а публикация агента ждёт твоего напечатанного «да».
+
 ## 0.6.0 — 2026-10-30
 en: Updates find you: Teamly tells you when a new version is out within hours, and one press on Update installs it and restarts the panel, without restarting Claude.
 ru: Обновления находят вас сами: Teamly сообщает о новой версии в течение нескольких часов, а одно нажатие на Update ставит её и перезапускает панель, без перезапуска Claude.
