@@ -1,0 +1,64 @@
+{
+  "slug": "warm-intro-machine",
+  "goal": "raise-round",
+  "title": "Warm-intro machine",
+  "idea": "A shortlist of 30 investors that fit exactly your round, each with a route in through people already in the round or founders from their portfolio, plus a short blurb that's easy to forward.",
+  "whatsNew": "Instead of spray-and-pray: check size, stage and fund freshness are checked, and the way in is through people with double opt-in.",
+  "steps": [
+    "Cold read of the deck until the verdict is CALL",
+    "Shortlist with evidence and a route in",
+    "Blurb and intro drafts — you send them"
+  ],
+  "chain": [
+    "pitch-critic",
+    "investor-scout"
+  ],
+  "needsFromYou": "A round brief and the deck; sending is always yours",
+  "evidence": [
+    {
+      "text": "Best way in: an investor already in the round, then a founder from the fund's portfolio",
+      "source": "investor-scout, references/sources.md (Paul Graham)",
+      "kind": "craft"
+    },
+    {
+      "text": "Intros with double opt-in and a short forwardable blurb",
+      "source": "investor-scout, references/sources.md (Fred Wilson)",
+      "kind": "craft"
+    }
+  ],
+  "author": "Igor Kossolapov",
+  "costPerResult": 0,
+  "timePerResult": "~45 min for 30 investors",
+  "fitsWhen": "You have a deck and a clear round brief",
+  "notFor": "The round isn't defined yet",
+  "costBreakdown": [
+    {
+      "tool": "Paid investor databases via your Teamly key",
+      "unit": "per shortlist",
+      "credits": 1.2,
+      "optional": true
+    }
+  ],
+  "costNote": "Free; paid investor databases are optional",
+  "i18n": {
+    "ru": {
+      "title": "Тёплые интро по списку",
+      "idea": "Шорт-лист из 30 инвесторов, которым подходит именно твой раунд, и к каждому путь через тех, кто уже в раунде, или основателей из их портфеля. Плюс короткий блёрб, который удобно переслать.",
+      "whatsNew": "Вместо рассылки «всем подряд» — проверка чека, стадии и свежести фонда, а вход через людей с двойным согласием.",
+      "steps": [
+        "Холодное чтение дека до вердикта CALL",
+        "Шорт-лист с доказательствами и путём входа",
+        "Блёрб и черновики интро, отправляешь ты"
+      ],
+      "needsFromYou": "Бриф раунда и дек; отправка писем — только ты",
+      "timePerResult": "~45 мин на 30 инвесторов",
+      "fitsWhen": "Есть дек и понятный бриф раунда",
+      "notFor": "Если раунд ещё не сформулирован",
+      "costNote": "Бесплатно: только инструменты Claude Code; платные инструменты — по желанию",
+      "evidence": [
+        "Лучший вход: инвестор, который уже в раунде, затем основатель из портфеля фонда",
+        "Интро с двойным согласием и коротким блёрбом для пересылки"
+      ]
+    }
+  }
+}

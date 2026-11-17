@@ -1,0 +1,55 @@
+[
+  {
+    "id": "grow-audience",
+    "title": "Grow an audience with short video and posts",
+    "examples": [
+      "20 reels by 15.11",
+      "+10K followers in 2 months",
+      "1 reel a day without an editor"
+    ],
+    "i18n": {
+      "ru": {
+        "title": "Растить аудиторию коротким видео и постами",
+        "examples": [
+          "20 рилсов к 15.11",
+          "+10 тыс. подписчиков за 2 месяца",
+          "1 рилс в день без монтажёра"
+        ]
+      }
+    }
+  },
+  {
+    "id": "raise-round",
+    "title": "Raise a round",
+    "examples": [
+      "close a $450K pre-seed by year end",
+      "10 investor calls in 3 weeks"
+    ],
+    "i18n": {
+      "ru": {
+        "title": "Поднять раунд",
+        "examples": [
+          "закрыть pre-seed $450K до конца года",
+          "10 звонков с инвесторами за 3 недели"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ship-weekly",
+    "title": "Keep pace toward a goal, week by week",
+    "examples": [
+      "launch the MVP by 23.10",
+      "close the sprint without slipping"
+    ],
+    "i18n": {
+      "ru": {
+        "title": "Держать темп: неделя за неделей к цели",
+        "examples": [
+          "запустить MVP к 23.10",
+          "закрыть спринт без переносов"
+        ]
+      }
+    }
+  }
+]

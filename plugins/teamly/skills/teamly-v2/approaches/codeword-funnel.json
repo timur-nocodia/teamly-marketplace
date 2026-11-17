@@ -1,0 +1,55 @@
+{
+  "slug": "codeword-funnel",
+  "goal": "grow-audience",
+  "title": "Code word → DM → lead",
+  "idea": "Every video ends with a code word: a comment triggers a DM with the link to the material. Views turn into contacts.",
+  "whatsNew": "You measure leads, not views. Reach drops a bit, conversations multiply.",
+  "steps": [
+    "Script with a code word at the end",
+    "The material behind the link, promised in the video",
+    "Auto-reply in DMs on the code word"
+  ],
+  "chain": [
+    "reel-script",
+    "you",
+    "dm-funnel"
+  ],
+  "missing": [
+    "dm-funnel"
+  ],
+  "needsFromYou": "Material worth giving away (a guide, prompt, template)",
+  "evidence": [
+    {
+      "text": "Author's code-word reels: median 14K views vs 102K, but 133 comments vs 41",
+      "source": "reel-script, references/sources.md P3, 2026-09-22",
+      "kind": "practitioner"
+    }
+  ],
+  "author": "Igor Kossolapov",
+  "costPerResult": 0,
+  "timePerResult": "~10 min + auto-reply setup",
+  "fitsWhen": "You need leads, not just reach",
+  "notFor": "Nothing to give behind the link",
+  "costBreakdown": [],
+  "costNote": "Free",
+  "i18n": {
+    "ru": {
+      "title": "Кодовое слово → директ → заявка",
+      "idea": "Каждый ролик заканчивается кодовым словом: в ответ на комментарий человек получает в директ ссылку на материал. Просмотры превращаются в контакты.",
+      "whatsNew": "Меряешь не просмотры, а заявки. Охват немного падает, зато разговоров кратно больше.",
+      "steps": [
+        "Сценарий с кодовым словом в конце",
+        "Материал по ссылке, обещанный в ролике",
+        "Автоответ в директ на кодовое слово"
+      ],
+      "needsFromYou": "Материал, который не стыдно отдать (гайд, промпт, шаблон)",
+      "timePerResult": "~10 мин + настройка автоответа",
+      "fitsWhen": "Нужны заявки, а не только охват",
+      "notFor": "Если нечего отдать по ссылке",
+      "costNote": "Бесплатно: только инструменты Claude Code",
+      "evidence": [
+        "У автора ролики с кодовым словом: медиана 14 тыс. просмотров против 102 тыс., но комментариев 133 против 41"
+      ]
+    }
+  }
+}

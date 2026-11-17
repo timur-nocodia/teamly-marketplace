@@ -1,0 +1,58 @@
+{
+  "slug": "carousel-repurpose",
+  "goal": "grow-audience",
+  "title": "Carousels from proven posts",
+  "idea": "Three carousels a week from English posts that already collected saves, rewritten for your audience.",
+  "whatsNew": "No filming, no editing. Bet on saves, not likes: the ideas are already proven on another audience.",
+  "steps": [
+    "Radar finds posts with saves",
+    "Carousel: cover, 5–8 slides, CTA",
+    "You approve in 10 minutes"
+  ],
+  "chain": [
+    "trend-radar",
+    "carousel-maker"
+  ],
+  "needsFromYou": "10 minutes to approve",
+  "evidence": [
+    {
+      "text": "“My whole system / ready prompt” posts get saved 2–3× more often than liked",
+      "source": "Ресерч онтологий 12.10.2026, X (выборка)",
+      "kind": "research"
+    }
+  ],
+  "author": "Igor Kossolapov",
+  "costPerResult": 0,
+  "timePerResult": "~15 min",
+  "fitsWhen": "No time or wish to be on camera",
+  "notFor": "An audience that doesn't read (video only)",
+  "costBreakdown": [
+    {
+      "tool": "Cover image generation",
+      "unit": "1 cover",
+      "credits": 0.8,
+      "optional": true
+    }
+  ],
+  "costNote": "Free with Claude Code's own tools; the cover image is optional",
+  "i18n": {
+    "ru": {
+      "title": "Карусели из чужих хитов",
+      "idea": "Три карусели в неделю из англоязычных постов, которые уже собрали сохранения, переписанные под твою аудиторию.",
+      "whatsNew": "Не нужно ни снимать, ни монтировать. Ставка на сохранения, а не на лайки: идеи уже проверены на другой аудитории.",
+      "steps": [
+        "Радар находит посты с сохранениями",
+        "Карусель: обложка, 5–8 слайдов, призыв",
+        "Ты утверждаешь за 10 минут"
+      ],
+      "needsFromYou": "10 минут на утверждение",
+      "timePerResult": "~15 мин",
+      "fitsWhen": "Нет времени или желания сниматься",
+      "notFor": "Если аудитория не читает (только видео)",
+      "costNote": "Бесплатно: только инструменты Claude Code; платные инструменты — по желанию",
+      "evidence": [
+        "Посты «вся моя система / готовый промпт» сохраняют в 2–3 раза чаще, чем лайкают"
+      ]
+    }
+  }
+}

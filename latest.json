@@ -1,0 +1,9 @@
+{
+ "version": "0.8.7",
+ "minVersion": "0.0.0",
+ "notes": {
+  "en": "Example data in the office no longer includes anyone's real chat history.",
+  "ru": "В примерах данных офиса больше нет чьей-то настоящей истории чатов."
+ },
+ "date": "2026-11-17"
+}

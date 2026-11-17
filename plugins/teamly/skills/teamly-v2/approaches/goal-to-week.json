@@ -1,0 +1,52 @@
+{
+  "slug": "goal-to-week",
+  "goal": "ship-weekly",
+  "title": "Goal → unknowns → week",
+  "idea": "The goal is split into unknowns, closed one at a time by priority (product before marketing). Each task is a measurable outcome, the week has a buffer day, and every day there's a short check-in without praise.",
+  "whatsNew": "The plan is built not as a to-do list but from the unknowns that block the goal. A buffer and honest check-ins instead of slipping.",
+  "steps": [
+    "The goal as a measurable result with a date",
+    "Unknowns and their order",
+    "The week in real hours + a buffer",
+    "Daily check-in: done / blocked / next"
+  ],
+  "chain": [
+    "week-planner"
+  ],
+  "needsFromYou": "10 minutes a day for the check-in",
+  "evidence": [
+    {
+      "text": "Author's method: a goal as an equation with unknowns closed by priority",
+      "source": "спринт-планирование 20–21.10.2026",
+      "kind": "practitioner"
+    }
+  ],
+  "author": "Igor Kossolapov",
+  "costPerResult": 0,
+  "timePerResult": "~20 min per week",
+  "fitsWhen": "You have a dated goal and little time",
+  "notFor": "",
+  "costBreakdown": [],
+  "costNote": "Free",
+  "i18n": {
+    "ru": {
+      "title": "Цель → переменные → неделя",
+      "idea": "Цель раскладывается на неизвестные, они закрываются по одной по приоритету (сначала продукт, потом маркетинг). Каждая задача — измеримый результат, у недели есть день-буфер, каждый день короткая сверка без похвалы.",
+      "whatsNew": "План строится не списком дел, а от неизвестных, которые блокируют цель. Буфер и честная сверка вместо переносов.",
+      "steps": [
+        "Цель как измеримый результат с датой",
+        "Неизвестные и их порядок",
+        "Неделя по реальным часам + буфер",
+        "Ежедневная сверка: сделано / мешает / дальше"
+      ],
+      "needsFromYou": "10 минут в день на сверку",
+      "timePerResult": "~20 мин на неделю",
+      "fitsWhen": "Есть цель с датой и мало времени",
+      "notFor": "",
+      "costNote": "Бесплатно: только инструменты Claude Code",
+      "evidence": [
+        "Метод автора: цель как уравнение с неизвестными, закрываемыми по приоритету"
+      ]
+    }
+  }
+}

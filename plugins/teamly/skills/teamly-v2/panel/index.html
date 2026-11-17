@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Teamly</title>
+  <!-- Bundled so the panel works offline: Tailwind 4.1.18 browser build, Geist + Press Start 2P (OFL 1.1). -->
+  <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
+  <script src="./vendor/tailwindcss-browser-4.1.18.js"></script>
+  <!-- Tokens from the Teamly platform (light theme only), same as teamly-skill/panel. -->
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --font-mono: "Geist Mono", ui-monospace, monospace;
+      --font-pixel: "Press Start 2P", cursive;
+    }
+    @theme inline {
+      --radius-sm: calc(var(--radius) - 4px);
+      --radius-md: calc(var(--radius) - 2px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+      --radius-2xl: calc(var(--radius) + 8px);
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-card: var(--card);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-destructive: var(--destructive);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+    }
+    :root {
+      --radius: 0.625rem;
+      --background: oklch(1 0 0);
+      --foreground: oklch(0.145 0 0);
+      --card: oklch(1 0 0);
+      --primary: oklch(0.205 0 0);
+      --primary-foreground: oklch(0.985 0 0);
+      --secondary: oklch(0.97 0 0);
+      --muted: oklch(0.97 0 0);
+      --muted-foreground: oklch(0.556 0 0);
+      --accent: oklch(0.97 0 0);
+      --destructive: oklch(0.577 0.245 27.325);
+      --border: oklch(0.922 0 0);
+      --input: oklch(0.922 0 0);
+      --ring: oklch(0.708 0 0);
+      --brand: #4f5bd5;
+      --tabbar-h: 56px;
+      --topbar-h: 48px;
+    }
+    @layer base {
+      * { @apply border-border; }
+      html, body { @apply bg-background text-foreground font-sans antialiased; }
+      body { margin: 0; }
+    }
+    @keyframes fadeSlideUp { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes pixelBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+    @keyframes bubbleIn { 0% { opacity: 0; transform: scale(0.8) translateY(4px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes sheetUp { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
+    @keyframes stripes { 0% { background-position: 0 0; } 100% { background-position: 24px 0; } }
+    @keyframes needsGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); } 50% { box-shadow: 0 0 0 5px rgba(251, 191, 36, .3); } }
+  </style>
+</head>
+<body>
+  <div id="app" class="h-dvh flex flex-col overflow-hidden"></div>
+  <div id="sheet-root"></div>
+  <div id="toast-root" class="pointer-events-none fixed inset-x-0 bottom-4 z-[60] flex justify-center px-4"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

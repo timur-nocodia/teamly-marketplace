@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Teamly · connected</title>
+  <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #fafafa; color: #1f1f1f;
+           font: 15px/1.5 "Geist", ui-sans-serif, system-ui, sans-serif; }
+    main { width: min(420px, calc(100vw - 32px)); padding: 28px; border: 1px solid #e5e5e5; border-radius: 14px;
+           background: #fff; text-align: center; }
+    h1 { margin: 12px 0 6px; font: 12px/1.6 "Press Start 2P", monospace; }
+    p { margin: 0; color: #666; }
+    img { width: 64px; height: 64px; object-fit: contain; image-rendering: pixelated; }
+    .bad h1 { color: #b42318; }
+  </style>
+</head>
+<body>
+  <!-- The Teamly site redirects here after sign-in: #key=…&state=…. The fragment never reaches a server or a log;
+       this page takes it out of the address bar and the history at once and hands both to server.py, which keeps the
+       key only if the state is the one of the sign-in this panel opened. -->
+  <main id="box">
+    <img src="./assets/agents/formal01.png" alt="" />
+    <h1 id="title">Connecting Teamly…</h1>
+    <p id="text">One moment.</p>
+  </main>
+  <script>
+    (async () => {
+      const got = new URLSearchParams(location.hash.slice(1));
+      history.replaceState(null, "", location.pathname);
+      const say = (title, text, bad) => {
+        document.getElementById("title").textContent = title;
+        document.getElementById("text").textContent = text;
+        document.getElementById("box").classList.toggle("bad", !!bad);
+      };
+      const key = got.get("key"), state = got.get("state");
+      if (!key || !state) return say("Nothing to connect", "Open Teamly in Claude and press Sign in to Teamly.", true);
+      try {
+        const res = await fetch("/api/connect", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Teamly-Panel": "1" },
+          body: JSON.stringify({ key, state }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) return say("Not connected", body.error || "Press Sign in to Teamly in Claude again.", true);
+        say("Teamly is connected", "Go back to Claude: the coordinator goes on by itself. You can close this tab.");
+      } catch {
+        say("Not connected", "The Teamly panel is not running. Open Teamly in Claude and press Sign in again.", true);
+      }
+    })();
+  </script>
+</body>
+</html>
